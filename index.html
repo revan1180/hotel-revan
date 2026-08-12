@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotel Refan - Booking Online</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #0d0d0d;
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    /* ===== VIDEO HERO (Autoplay langsung) ===== */
+    .video-hero {
+      position: relative;
+      width: 100%;
+      height: 75vh;
+      overflow: hidden;
+    }
+
+    .video-hero video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.45), rgba(0,0,0,0.75));
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .video-overlay h1 {
+      font-size: 3.2rem;
+      margin-bottom: 12px;
+      text-shadow: 2px 2px 10px rgba(0,0,0,0.9);
+      letter-spacing: 2px;
+    }
+
+    .video-overlay p {
+      font-size: 1.25rem;
+      max-width: 620px;
+      margin-bottom: 28px;
+      opacity: 0.95;
+    }
+
+    .btn-booking {
+      background: #e63946;
+      color: white;
+      padding: 15px 40px;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.15rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      text-decoration: none;
+      box-shadow: 0 5px 20px rgba(230, 57, 70, 0.4);
+    }
+
+    .btn-booking:hover {
+      background: #c1121f;
+      transform: scale(1.06);
+    }
+
+    /* ===== GALERI 10 FOTO ===== */
+    .gallery-section {
+      padding: 70px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .gallery-section h2 {
+      text-align: center;
+      font-size: 2.3rem;
+      margin-bottom: 45px;
+      color: #ffd700;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+      border-radius: 14px;
+      transition: transform 0.35s, box-shadow 0.35s;
+      cursor: pointer;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.06);
+      box-shadow: 0 12px 30px rgba(230, 57, 70, 0.45);
+    }
+
+    /* ===== FORM BOOKING ===== */
+    .booking-section {
+      background: #161616;
+      padding: 70px 20px;
+    }
+
+    .booking-container {
+      max-width: 720px;
+      margin: 0 auto;
+      background: #1f1f1f;
+      padding: 45px;
+      border-radius: 18px;
+      box-shadow: 0 12px 45px rgba(0,0,0,0.55);
+    }
+
+    .booking-container h2 {
+      text-align: center;
+      margin-bottom: 35px;
+      color: #ffd700;
+      font-size: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 22px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 13px 16px;
+      border: 2px solid #3a3a3a;
+      border-radius: 10px;
+      background: #2a2a2a;
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: #e63946;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      background: #e63946;
+      color: white;
+      padding: 16px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 12px;
+      transition: 0.3s;
+    }
+
+    button[type="submit"]:hover {
+      background: #c1121f;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      text-align: center;
+      padding: 35px 20px;
+      background: #0a0a0a;
+      color: #777;
+      font-size: 0.95rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 650px) {
+      .video-overlay h1 {
+        font-size: 2.1rem;
+      }
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+      .booking-container {
+        padding: 30px 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- VIDEO LANGSUNG DIPUTAR SAAT MASUK SITUS -->
+  <section class="video-hero">
+    <video autoplay muted loop playsinline>
+      <!-- Video suasana hotel yang ramai / hidup (bisa diganti dengan video sendiri) -->
+      <source src="https://cdn.coverr.co/videos/coverr-busy-hotel-lobby-5625/1080p.mp4" type="video/mp4">
+      <source src="https://assets.mixkit.co/videos/preview/mixkit-people-walking-in-a-hotel-lobby-4086-large.mp4" type="video/mp4">
+      Browser Anda tidak mendukung video HTML5.
+    </video>
+
+    <div class="video-overlay">
+      <h1>HOTEL REFAN</h1>
+      <p>Nikmati pengalaman menginap yang penuh energi & kenyamanan di Hotel Refan</p>
+      <a href="#booking" class="btn-booking">Booking Sekarang</a>
+    </div>
+  </section>
+
+  <!-- 10 FOTO KAMAR HOTEL -->
+  <section class="gallery-section">
+    <h2>Galeri Kamar Hotel Refan</h2>
+    <div class="gallery">
+      <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&h=400&fit=crop" alt="Kamar Deluxe">
+      <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=600&h=400&fit=crop" alt="Kamar Superior">
+      <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=600&h=400&fit=crop" alt="Kamar Suite">
+      <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=600&h=400&fit=crop" alt="Kamar Premium">
+      <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600&h=400&fit=crop" alt="Kamar Family">
+      <img src="https://images.unsplash.com/photo-1591088398332-8a7791972843?w=600&h=400&fit=crop" alt="Kamar Executive">
+      <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=600&h=400&fit=crop" alt="Kamar Modern">
+      <img src="https://images.unsplash.com/photo-1631049421450-348ccd7f8949?w=600&h=400&fit=crop" alt="Kamar dengan View">
+      <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600&h=400&fit=crop" alt="Kamar Luxury">
+      <img src="https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=600&h=400&fit=crop" alt="Kamar VIP">
+    </div>
+  </section>
+
+  <!-- FORM BOOKING -->
+  <section class="booking-section" id="booking">
+    <div class="booking-container">
+      <h2>Form Booking Hotel Refan</h2>
+      <form onsubmit="alert('Terima kasih! Booking di Hotel Refan berhasil dikirim.\nKami akan segera menghubungi Anda.'); return false;">
+        
+        <div class="form-group">
+          <label>Nama Lengkap</label>
+          <input type="text" placeholder="Masukkan nama lengkap" required>
+        </div>
+
+        <div class="form-group">
+          <label>Email / Nomor WhatsApp</label>
+          <input type="text" placeholder="Email atau nomor WhatsApp aktif" required>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Tanggal Check-in</label>
+            <input type="date" required>
+          </div>
+          <div class="form-group">
+            <label>Tanggal Check-out</label>
+            <input type="date" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Tipe Kamar</label>
+          <select required>
+            <option value="">-- Pilih Tipe Kamar --</option>
+            <option>Deluxe Room</option>
+            <option>Superior Room</option>
+            <option>Suite Room</option>
+            <option>Family Room</option>
+            <option>Executive Room</option>
+            <option>Luxury Suite</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Jumlah Tamu</label>
+          <input type="number" min="1" max="8" value="2" required>
+        </div>
+
+        <button type="submit">Booking Sekarang</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Hotel Refan. Semua hak dilindungi.</p>
+  </footer>
+
+</body>
+        </html>
